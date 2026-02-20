@@ -1,1 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Operation: True Love — 50Q Pink Precision Quiz</title>
+  <style>
+    :root{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      --bg1:#fff0f6; --bg2:#ffe3ef;
+      --card:#ffffffcc; --border:#ffb6d5;
+      --text:#2a0f1c; --muted:#6b2a45;
+      --accent:#ff4fa3; --accent2:#ff86c7;
+      --soft:#fff7fb; --softBorder:#ffd0e7;
+    }
+    body{
+      margin:0; color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 0%, #ffd2e6 0%, transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, #ffe0f0 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:22px;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 12px 30px rgba(255,79,163,.12);
+      backdrop-filter: blur(6px);
+    }
+    h1{margin:0 0 6px;font-size:1.45rem;}
+    p{margin:8px 0;color:var(--muted);line-height:1.35;}
+    .badge{
+      display:inline-block;padding:6px 10px;border-radius:999px;
+      background:#fff;border:1px solid var(--border);
+      color:var(--muted);font-size:.9rem;margin-bottom:10px;
+    }
+    .tiny{font-size:.92rem;color:#7a3a56;}
+    .bar{
+      height:10px; border-radius:999px; background:#fff;
+      border:1px solid var(--border); overflow:hidden;
+      margin:10px 0 0;
+    }
+    .bar > div{height:100%; width:0%;}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; align-items:center;}
+    button{
+      border:0;border-radius:14px;padding:12px 14px;
+      background: linear-gradient(90deg,var(--accent),var(--accent2));
+      color:white;cursor:pointer;font-weight:900;
+      box-shadow: 0 10px 20px rgba(255,79,163,.20);
+    }
+    button.secondary{
+      background:#ffffff;color:var(--muted);
+      border:1px solid var(--border); box-shadow:none; font-weight:800;
+    }
+    button.ghost{
+      background:transparent;color:var(--muted);
+      border:1px dashed var(--border); box-shadow:none; font-weight:800;
+    }
+    .q{
+      margin:12px 0;
+      padding:14px;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid var(--border);
+    }
+    .q h2{font-size:1rem;margin:0 0 10px;color:var(--text);}
+    label{
+      display:block;
+      padding:10px 12px;
+      margin:8px 0;
+      border-radius:14px;
+      border:1px solid var(--softBorder);
+      cursor:pointer;
+      transition: transform .06s ease, background .15s ease;
+      background:var(--soft);
+    }
+    label:hover{background:#ffe8f3; transform: translateY(-1px);}
+    input{margin-right:10px; accent-color: var(--accent);}
+    .grid{display:grid; grid-template-columns:1fr; gap:12px;}
+    @media (min-width:920px){ .grid{grid-template-columns:1fr 1fr;} }
+    .result{
+      margin-top:16px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      border:1px solid var(--softBorder);
+      margin:6px 6px 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .charCard{
+      display:flex; gap:12px; align-items:center;
+      padding:12px; border-radius:16px;
+      border:1px solid var(--softBorder); background:var(--soft);
+      margin-top:12px;
+    }
+    .avatar{
+      width:54px; height:54px; border-radius:16px;
+      border:1px solid var(--border);
+      display:grid; place-items:center;
+      font-size:26px; background:#fff;
+      flex: 0 0 auto;
+    }
+    .charTitle{margin:0;color:var(--text);font-weight:1000;}
+    .charSub{margin:4px 0 0;color:var(--muted);font-size:.95rem;}
+    .toast{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--softBorder);
+      background:var(--soft);
+      display:none;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .mutedBox{
+      margin-top:12px; padding:12px; border-radius:16px;
+      background:var(--soft); border:1px solid var(--softBorder);
+      color:var(--muted);
+    }
+    .dimGrid{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px;}
+    @media (min-width:820px){ .dimGrid{grid-template-columns:1fr 1fr;} }
+    .dim{
+      border:1px solid var(--softBorder);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#fff;
+    }
+    .dim b{color:var(--text);}
+  </style>
+</head>
 
+<body>
+  <div class="wrap">
+    <div class="card" id="top">
+      <span class="badge">💗 fan-made • 50Q • canon results + psych explanation</span>
+      <h1>Operation: True Love — Precision Soulmate Quiz</h1>
+      <p>
+        This is built to feel “too accurate”: it measures pacing, autonomy, conflict style, jealousy threshold,
+        and trust-building — then matches you to a <b>canon</b> result with an explanation.
+      </p>
+
+      <div class="mutedBox">
+        <b>How to take it:</b> answer fast. Don’t choose what sounds “best” — choose what you actually do.
+        <div class="bar" aria-label="progress"><div id="barFill"></div></div>
+        <div class="tiny" id="progressText">0 / 50 answered</div>
+      </div>
+
+      <form id="quiz">
+        <div id="questions"></div>
+
+        <div class="row">
+          <button type="button" onclick="getResult()">Get my result 💘</button>
+          <button type="button" class="secondary" onclick="resetAll()">Reset</button>
+          <button type="button" class="ghost" onclick="scrollToResult()">Jump to result</button>
+        </div>
+      </form>
+
+      <div id="out" class="result" style="display:none;"></div>
+      <div id="toast" class="toast"></div>
+
+      <p class="tiny">Just for fun ✨ Not official.</p>
+    </div>
+  </div>
+
+<script>
+/**
+ * Dimensions (0..100 scale after normalization):
+ * AVOID = avoidant/withdrawal + guardedness
+ * ANX  = anxious chase + reassurance seeking
+ * PACE = need for slow pacing + suspicion of fast feelings
+ * AUTO = autonomy sensitivity + control-avoidance
+ * CONFLICT = directness vs avoidance (higher = more avoidance)
+ * JEAL = jealousy intolerance + boundary strictness (higher = low tolerance)
+ * TRUST = baseline skepticism vs openness (higher = more skeptical)
+ *
+ * We score each answer with small deltas across dimensions.
+ */
+
+// 50 questions, 4 options each.
+// Each option: {t:"text", d:{AVOID:+1, ...}}
+const Q = [
+  // 1–10 Attachment & pacing
+  q("When someone needs reassurance often, you…", [
+    o("Give it easily.", {ANX:-1, AVOID:-1, TRUST:-1}),
+    o("Give it, but feel drained.", {AVOID:+1, PACE:+1}),
+    o("Feel pressured.", {AVOID:+2, PACE:+2, AUTO:+1}),
+    o("Pull away.", {AVOID:+3, CONFLICT:+2, PACE:+2})
+  ]),
+  q("You open up emotionally…", [
+    o("Quickly.", {ANX:+1, PACE:-2, TRUST:-1}),
+    o("Gradually.", {PACE:+1, TRUST:+1}),
+    o("Only when necessary.", {AVOID:+2, TRUST:+2}),
+    o("Only when fully safe.", {PACE:+2, TRUST:+2, AVOID:+1})
+  ]),
+  q("If someone double-texts you…", [
+    o("Cute.", {ANX:+1, TRUST:-1}),
+    o("Neutral.", {TRUST:+0}),
+    o("Slightly annoying.", {AVOID:+1, AUTO:+1}),
+    o("Why…", {AVOID:+2, AUTO:+2, TRUST:+1})
+  ]),
+  q("If someone says ‘I miss you’ early…", [
+    o("Sweet.", {ANX:+1, TRUST:-1, PACE:-1}),
+    o("Fast.", {PACE:+1, TRUST:+1}),
+    o("Suspicious.", {PACE:+2, TRUST:+2}),
+    o("Heavy.", {AVOID:+1, PACE:+2, AUTO:+1})
+  ]),
+  q("You prefer emotional conversations…", [
+    o("Spontaneous.", {ANX:+1, CONFLICT:-1}),
+    o("Scheduled.", {PACE:+1, TRUST:+1}),
+    o("Rare but deep.", {PACE:+2, AVOID:+1, TRUST:+1}),
+    o("Avoidable.", {AVOID:+2, CONFLICT:+2})
+  ]),
+  q("When someone cries in front of you…", [
+    o("Comfort immediately.", {ANX:+1, AVOID:-1}),
+    o("Feel responsible.", {ANX:+2, AUTO:+1}),
+    o("Feel awkward.", {AVOID:+1, CONFLICT:+1}),
+    o("Freeze.", {AVOID:+2, CONFLICT:+2})
+  ]),
+  q("If someone gets jealous, you…", [
+    o("Reassure them.", {ANX:+1, JEAL:-1}),
+    o("Clarify calmly.", {TRUST:+1, JEAL:+0}),
+    o("Get irritated.", {AUTO:+2, JEAL:+2}),
+    o("Withdraw.", {AVOID:+2, CONFLICT:+2})
+  ]),
+  q("You need space…", [
+    o("Rarely.", {ANX:+1, AVOID:-1}),
+    o("Sometimes.", {TRUST:+0}),
+    o("Often.", {AVOID:+2, AUTO:+1}),
+    o("Constantly.", {AVOID:+3, AUTO:+2})
+  ]),
+  q("When conflict happens, you…", [
+    o("Fix it now.", {CONFLICT:-2, TRUST:+0}),
+    o("Talk later.", {PACE:+1, TRUST:+1}),
+    o("Think first.", {PACE:+1, TRUST:+1}),
+    o("Avoid.", {CONFLICT:+3, AVOID:+2})
+  ]),
+  q("If someone says ‘Where is this going?’ you feel…", [
+    o("Excited.", {ANX:+1, PACE:-1}),
+    o("Calm.", {TRUST:+0}),
+    o("Cornered.", {AUTO:+2, PACE:+2, AVOID:+1}),
+    o("Defensive.", {AUTO:+2, CONFLICT:+2, AVOID:+1})
+  ]),
+
+  // 11–20 Autonomy & control sensitivity
+  q("A partner who checks your location would feel…", [
+    o("Romantic.", {ANX:+1, JEAL:-1}),
+    o("Only okay if agreed.", {TRUST:+1}),
+    o("Controlling.", {AUTO:+3, JEAL:+2}),
+    o("Dealbreaker.", {AUTO:+4, JEAL:+3})
+  ]),
+  q("If someone tries to ‘fix’ you, you…", [
+    o("Appreciate it.", {ANX:+1, TRUST:-1}),
+    o("Listen, but decide yourself.", {AUTO:+1, TRUST:+1}),
+    o("Get irritated.", {AUTO:+2, AVOID:+1}),
+    o("Shut down.", {AVOID:+2, CONFLICT:+2, AUTO:+2})
+  ]),
+  q("You’re most attracted to…", [
+    o("Consistency.", {PACE:+1, TRUST:+1}),
+    o("Intensity.", {ANX:+2, PACE:-2}),
+    o("Mystery.", {TRUST:+2, PACE:+1}),
+    o("Competence.", {AUTO:+1, TRUST:+1})
+  ]),
+  q("If a relationship becomes ‘too much’ you…", [
+    o("Talk it out.", {CONFLICT:-1, TRUST:+1}),
+    o("Ask for space.", {AUTO:+2, PACE:+1}),
+    o("Get sarcastic.", {AVOID:+1, CONFLICT:+1}),
+    o("Disappear emotionally.", {AVOID:+3, CONFLICT:+2})
+  ]),
+  q("Being needed makes you feel…", [
+    o("Loved.", {ANX:+1, TRUST:-1}),
+    o("Okay in moderation.", {TRUST:+1}),
+    o("Trapped.", {AUTO:+3, AVOID:+2}),
+    o("Irritated.", {AUTO:+3, JEAL:+1})
+  ]),
+  q("Your ideal relationship pace is…", [
+    o("Fast and exciting.", {ANX:+2, PACE:-3}),
+    o("Medium — steady.", {TRUST:+1, PACE:+1}),
+    o("Slow — earn it.", {PACE:+3, TRUST:+2}),
+    o("Very slow — guarded.", {PACE:+4, TRUST:+3, AVOID:+1})
+  ]),
+  q("When someone compliments you a lot, you…", [
+    o("Love it.", {ANX:+1, TRUST:-1}),
+    o("Like it but doubt it.", {TRUST:+2}),
+    o("Feel suspicious.", {TRUST:+3, PACE:+1}),
+    o("Feel pressured.", {AUTO:+2, PACE:+2})
+  ]),
+  q("If someone wants to see you every day, you…", [
+    o("Yes please.", {ANX:+2, AVOID:-1}),
+    o("Sometimes.", {TRUST:+0}),
+    o("Need balance.", {AUTO:+2, PACE:+1}),
+    o("No.", {AVOID:+2, AUTO:+2})
+  ]),
+  q("Your boundaries are usually…", [
+    o("Flexible.", {ANX:+1, JEAL:-1}),
+    o("Clear and calm.", {TRUST:+1}),
+    o("Strict.", {AUTO:+2, JEAL:+2}),
+    o("Strict + unspoken.", {AUTO:+2, JEAL:+2, CONFLICT:+2})
+  ]),
+  q("If someone pushes for answers, you…", [
+    o("Explain everything.", {ANX:+1, CONFLICT:-1}),
+    o("Explain some.", {TRUST:+1}),
+    o("Get defensive.", {AUTO:+2, CONFLICT:+1}),
+    o("Shut down.", {AVOID:+3, CONFLICT:+2})
+  ]),
+
+  // 21–30 Conflict & repair style
+  q("After an argument, you need…", [
+    o("Immediate repair.", {ANX:+2, CONFLICT:-2}),
+    o("A short break, then talk.", {PACE:+1, TRUST:+1}),
+    o("Time alone first.", {AVOID:+2, PACE:+2}),
+    o("To move on without talking.", {CONFLICT:+3, AVOID:+2})
+  ]),
+  q("When you’re wrong, you usually…", [
+    o("Apologize fast.", {CONFLICT:-1, TRUST:+0}),
+    o("Apologize after thinking.", {PACE:+1, TRUST:+1}),
+    o("Get embarrassed and avoid.", {CONFLICT:+2, AVOID:+1}),
+    o("Argue your logic.", {AUTO:+2, TRUST:+1})
+  ]),
+  q("If your partner is passive-aggressive, you…", [
+    o("Try to soothe.", {ANX:+1}),
+    o("Ask directly what’s wrong.", {CONFLICT:-1, TRUST:+1}),
+    o("Match their energy.", {JEAL:+1, CONFLICT:+1}),
+    o("Detach.", {AVOID:+2, CONFLICT:+2})
+  ]),
+  q("You forgive best when someone…", [
+    o("Cries and explains.", {ANX:+1, JEAL:-1}),
+    o("Takes clear responsibility.", {TRUST:+2}),
+    o("Changes behavior consistently.", {PACE:+2, TRUST:+2}),
+    o("Gives you space.", {AUTO:+2, AVOID:+1})
+  ]),
+  q("In tense moments, you prefer…", [
+    o("Big reassurance.", {ANX:+2}),
+    o("Simple facts.", {TRUST:+1}),
+    o("Silence until calm.", {PACE:+2, CONFLICT:+1}),
+    o("Distance.", {AVOID:+2, CONFLICT:+2})
+  ]),
+  q("If someone raises their voice, you…", [
+    o("Get emotional.", {ANX:+1}),
+    o("Stay calm but firm.", {TRUST:+1, AUTO:+1}),
+    o("Go cold.", {AVOID:+2, TRUST:+1}),
+    o("Leave.", {AUTO:+2, CONFLICT:+2})
+  ]),
+  q("Your biggest conflict trigger is…", [
+    o("Feeling unloved.", {ANX:+2}),
+    o("Feeling misunderstood.", {TRUST:+1, PACE:+1}),
+    o("Feeling controlled.", {AUTO:+3}),
+    o("Feeling embarrassed.", {AVOID:+2, CONFLICT:+1})
+  ]),
+  q("When you’re stressed, you want a partner to…", [
+    o("Stay close.", {ANX:+2}),
+    o("Check in gently.", {PACE:+1, TRUST:+1}),
+    o("Give space without drama.", {AUTO:+2, PACE:+1}),
+    o("Not ask questions.", {AVOID:+2, CONFLICT:+1})
+  ]),
+  q("If someone reads your mood correctly, you…", [
+    o("Love it.", {ANX:+1}),
+    o("Feel seen.", {TRUST:-1}),
+    o("Feel exposed.", {TRUST:+2, PACE:+1}),
+    o("Get suspicious.", {TRUST:+3})
+  ]),
+  q("If a partner wants ‘constant honesty’, you feel…", [
+    o("Relieved.", {TRUST:-1}),
+    o("Okay if respectful.", {TRUST:+1}),
+    o("Pressured.", {PACE:+2, AUTO:+1}),
+    o("Like it’s a trap.", {TRUST:+3, PACE:+2})
+  ]),
+
+  // 31–40 Jealousy, loyalty, attention
+  q("If your partner has a close friend who likes them…", [
+    o("Trust them fully.", {TRUST:-2, JEAL:-2}),
+    o("Watch behavior, not words.", {TRUST:+1}),
+    o("Set boundaries.", {JEAL:+2, AUTO:+1}),
+    o("Feel anxious/angry.", {ANX:+2, JEAL:+3})
+  ]),
+  q("You feel most loved when someone…", [
+    o("Texts constantly.", {ANX:+2}),
+    o("Shows up consistently.", {PACE:+1, TRUST:+1}),
+    o("Protects your boundaries.", {AUTO:+2}),
+    o("Understands you quietly.", {PACE:+2, TRUST:+1})
+  ]),
+  q("If someone flirts with you to get a reaction, you…", [
+    o("Flirt back.", {ANX:+1}),
+    o("Call it out calmly.", {TRUST:+1, CONFLICT:-1}),
+    o("Test them harder.", {TRUST:+2, JEAL:+1}),
+    o("Lose interest.", {AVOID:+2, PACE:+1})
+  ]),
+  q("Your loyalty style is…", [
+    o("All-in fast.", {ANX:+2, PACE:-1}),
+    o("All-in after proof.", {PACE:+2, TRUST:+2}),
+    o("Loyal but private.", {AVOID:+1, TRUST:+1}),
+    o("Loyal but independent.", {AUTO:+2})
+  ]),
+  q("A partner’s social popularity makes you…", [
+    o("Proud.", {ANX:+1, JEAL:-1}),
+    o("Neutral.", {TRUST:+0}),
+    o("Alert.", {TRUST:+1, JEAL:+1}),
+    o("Annoyed.", {JEAL:+2, AUTO:+1})
+  ]),
+  q("If you think someone is lying, you…", [
+    o("Ask immediately.", {CONFLICT:-1}),
+    o("Gather evidence first.", {TRUST:+3}),
+    o("Test them.", {TRUST:+3, PACE:+1}),
+    o("Detach quietly.", {AVOID:+2, TRUST:+2})
+  ]),
+  q("You are most turned off by…", [
+    o("Coldness.", {ANX:+2}),
+    o("Unreliability.", {PACE:+1, TRUST:+1}),
+    o("Possessiveness.", {AUTO:+3, JEAL:+2}),
+    o("Neediness.", {AVOID:+2, PACE:+2})
+  ]),
+  q("If someone is sweet in public but distant in private, you…", [
+    o("Assume they’re shy.", {TRUST:-1}),
+    o("Ask what’s going on.", {CONFLICT:-1, TRUST:+1}),
+    o("Feel played.", {TRUST:+3}),
+    o("Mirror their distance.", {AVOID:+2, CONFLICT:+1})
+  ]),
+  q("If you like someone, you usually…", [
+    o("Make it obvious.", {ANX:+2, PACE:-1}),
+    o("Show it through actions.", {PACE:+1}),
+    o("Hide it with jokes.", {AVOID:+1, CONFLICT:+1}),
+    o("Act normal until sure.", {PACE:+2, TRUST:+2})
+  ]),
+  q("When you’re jealous, you…", [
+    o("Get clingy.", {ANX:+2, JEAL:+1}),
+    o("Ask for clarity.", {TRUST:+1}),
+    o("Get quiet.", {AVOID:+2, JEAL:+2}),
+    o("Get cold/distant.", {AVOID:+3, JEAL:+3})
+  ]),
+
+  // 41–50 Canon-style scenarios (tone & dynamics)
+  q("A misunderstanding happens and they don’t explain. You…", [
+    o("Chase an explanation.", {ANX:+2, CONFLICT:-1}),
+    o("Wait and watch.", {PACE:+2, TRUST:+2}),
+    o("Assume worst.", {TRUST:+3, JEAL:+1}),
+    o("Withdraw.", {AVOID:+3, CONFLICT:+2})
+  ]),
+  q("If someone likes you but won’t say it, you…", [
+    o("Confess first.", {ANX:+2, CONFLICT:-1}),
+    o("Create a calm moment.", {PACE:+1, TRUST:+1}),
+    o("Test them.", {TRUST:+2, PACE:+1}),
+    o("Lose patience.", {AUTO:+2})
+  ]),
+  q("You’d rather date someone who is…", [
+    o("Openly affectionate.", {ANX:+2}),
+    o("Steady and consistent.", {PACE:+2, TRUST:+1}),
+    o("Quiet but deeply loyal.", {AVOID:+1, PACE:+2}),
+    o("Charismatic and fun.", {PACE:-1, ANX:+1})
+  ]),
+  q("If they go silent for a day, you…", [
+    o("Panic.", {ANX:+3}),
+    o("Check in once.", {TRUST:+1}),
+    o("Wait, but note it.", {PACE:+2, TRUST:+2}),
+    o("Mirror it.", {AVOID:+2, CONFLICT:+1})
+  ]),
+  q("If someone is clearly insecure, you…", [
+    o("Reassure a lot.", {ANX:+2}),
+    o("Reassure + set habits.", {PACE:+1, TRUST:+1}),
+    o("Feel pressure.", {AUTO:+2, PACE:+2}),
+    o("Distance yourself.", {AVOID:+2})
+  ]),
+  q("You value ‘effort’ over ‘words’ because…", [
+    o("Words feel enough.", {ANX:+1}),
+    o("Effort proves love.", {PACE:+2, TRUST:+2}),
+    o("Words can be manipulation.", {TRUST:+3}),
+    o("I don’t trust either fast.", {TRUST:+3, PACE:+2})
+  ]),
+  q("If someone is playful but avoids depth, you…", [
+    o("Enjoy it.", {PACE:-1, ANX:+1}),
+    o("Enjoy but want more later.", {PACE:+1}),
+    o("Feel unsafe.", {TRUST:+2, PACE:+2}),
+    o("Lose interest.", {AVOID:+2})
+  ]),
+  q("If someone is quiet but consistent, you…", [
+    o("Feel safe.", {PACE:+2, TRUST:+1}),
+    o("Feel bored.", {PACE:-2, ANX:+1}),
+    o("Wonder if they care.", {ANX:+2, TRUST:+1}),
+    o("Respect them.", {AUTO:+1, TRUST:+1})
+  ]),
+  q("If they protect you silently (no credit), you…", [
+    o("Cry.", {ANX:+2}),
+    o("Feel deeply loved.", {TRUST:-1}),
+    o("Feel suspicious.", {TRUST:+2}),
+    o("Pretend you didn’t notice.", {AVOID:+1})
+  ]),
+  q("Your ‘perfect’ relationship is…", [
+    o("High intensity + passion.", {ANX:+2, PACE:-3}),
+    o("Stable + emotionally smart.", {PACE:+2, TRUST:+2}),
+    o("Independent but loyal.", {AUTO:+2, AVOID:+1}),
+    o("Quiet, private, deep.", {PACE:+2, TRUST:+2, AVOID:+1})
+  ])
+];
+
+// Canon character profiles (how well they fit your dimension needs).
+// We compute compatibility by comparing your normalized dims to each profile preference.
+const CHAR = {
+  eunhyeok: {
+    name:"Goo Eunhyeok",
+    emoji:"🌙",
+    // target values for your preferences
+    target:{AVOID:55, ANX:25, PACE:75, AUTO:70, CONFLICT:55, JEAL:55, TRUST:70},
+    strengths:["quiet depth","detail-noticer","slow burn","boundary aware"],
+    works:"Best if you want stability, slow trust, and autonomy respected. He matches guarded pacing and doesn’t force emotional acceleration.",
+    breaks:"If you need frequent verbal reassurance or fast clarity, his restraint can feel like distance.",
+    advice:"Name your needs early in a calm way; don’t punish silence with more silence."
+  },
+  dohwa: {
+    name:"Baek Dohwa",
+    emoji:"💞",
+    target:{AVOID:35, ANX:45, PACE:55, AUTO:55, CONFLICT:40, JEAL:60, TRUST:55},
+    strengths:["banter chemistry","warm protective energy","soft under jokes","emotional spark"],
+    works:"Best if you want lightness + tenderness. He can soften your defenses and make love feel less heavy.",
+    breaks:"If you read flirting as ‘unsafe’ or you test too hard, you’ll spiral into suspicion.",
+    advice:"Let actions count. Ask direct questions instead of running silent ‘tests’."
+  },
+  suae: {
+    name:"Su-ae Shim",
+    emoji:"🎀",
+    target:{AVOID:40, ANX:55, PACE:60, AUTO:55, CONFLICT:35, JEAL:45, TRUST:50},
+    strengths:["honest heart","growth-focused","protective loyalty","emotional courage"],
+    works:"Best if you value sincerity, rebuilding confidence, and choosing each other on purpose. It’s a ‘we grow together’ match.",
+    breaks:"If you hide everything, she’ll feel shut out. She needs emotional participation, not perfect answers.",
+    advice:"Practice vulnerability in small doses. Don’t wait until you’re at your limit."
+  },
+  minu: {
+    name:"Kang Minu",
+    emoji:"🔥",
+    target:{AVOID:65, ANX:40, PACE:45, AUTO:80, CONFLICT:70, JEAL:80, TRUST:80},
+    strengths:["high intensity","push-pull tension","control themes","chemistry risk"],
+    works:"This is the high-chemistry magnet when you’re guarded, autonomy-sensitive, and suspicious of love. It feels ‘alive.’",
+    breaks:"Control + mistrust can become a loop: you test, he reacts, you detach, it escalates.",
+    advice:"If you choose this dynamic, you need hard boundaries and non-negotiables."
+  }
+};
+
+// ---------- Render ----------
+function buildQuestions(){
+  const root = document.getElementById("questions");
+  root.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  Q.forEach((qq, idx) => {
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    const h = document.createElement("h2");
+    h.textContent = (idx+1) + ") " + qq.t;
+    wrap.appendChild(h);
+
+    qq.opts.forEach((opt, j) => {
+      const lab = document.createElement("label");
+      const inp = document.createElement("input");
+      inp.type = "radio";
+      inp.name = "q" + (idx+1);
+      inp.value = String(j);
+      inp.addEventListener("change", updateProgress);
+
+      lab.appendChild(inp);
+      lab.appendChild(document.createTextNode(opt.t));
+      wrap.appendChild(lab);
+    });
+
+    grid.appendChild(wrap);
+  });
+
+  root.appendChild(grid);
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = Q.length;
+  let answered = 0;
+  for(let i=1;i<=total;i++){
+    if(document.querySelector(`input[name="q${i}"]:checked`)) answered++;
+  }
+  const pct = Math.round((answered/total)*100);
+  document.getElementById("progressText").textContent = `${answered} / ${total} answered`;
+  const fill = document.getElementById("barFill");
+  fill.style.width = pct + "%";
+  fill.style.background = `linear-gradient(90deg, var(--accent), var(--accent2))`;
+}
+
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.display = "block";
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => { t.style.display = "none"; }, 2200);
+}
+
+function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+
+// ---------- Scoring ----------
+function computeDims(){
+  const total = Q.length;
+  let raw = {AVOID:0, ANX:0, PACE:0, AUTO:0, CONFLICT:0, JEAL:0, TRUST:0};
+
+  for(let i=0;i<total;i++){
+    const pick = document.querySelector(`input[name="q${i+1}"]:checked`);
+    if(!pick) return null;
+    const opt = Q[i].opts[Number(pick.value)];
+    for(const k in opt.d) raw[k] = (raw[k]||0) + opt.d[k];
+  }
+
+  // normalize raw to 0..100 (roughly). These ranges are tuned for this quiz.
+  // We map each dim from expected raw range into 0..100.
+  const norm = {};
+  const ranges = {
+    AVOID:{min:-10, max:80},
+    ANX:{min:-10, max:80},
+    PACE:{min:-40, max:90},
+    AUTO:{min:-10, max:90},
+    CONFLICT:{min:-30, max:90},
+    JEAL:{min:-20, max:90},
+    TRUST:{min:-30, max:100}
+  };
+  for(const k in raw){
+    const r = ranges[k];
+    const x = (raw[k]-r.min) / (r.max-r.min);
+    norm[k] = clamp(Math.round(x*100),0,100);
+  }
+
+  return {raw, norm};
+}
+
+function dist(a,b){
+  // weighted distance; some dims matter more for match-feel
+  const w = {AVOID:1.2, ANX:1.0, PACE:1.4, AUTO:1.4, CONFLICT:1.0, JEAL:1.1, TRUST:1.3};
+  let s = 0;
+  for(const k in w){
+    const d = (a[k]-b[k]);
+    s += w[k]*d*d;
+  }
+  return Math.sqrt(s);
+}
+
+function interpretProfile(n){
+  // attachment leaning (simple, but feels accurate)
+  let attach = "Guarded secure";
+  if(n.ANX >= 65 && n.AVOID <= 45) attach = "Anxious-leaning";
+  else if(n.AVOID >= 65 && n.ANX <= 45) attach = "Avoidant-leaning";
+  else if(n.ANX >= 60 && n.AVOID >= 60) attach = "Fearful-avoidant (push/pull)";
+  else if(n.ANX <= 45 && n.AVOID <= 45) attach = "Secure-leaning";
+
+  // defense style
+  const defense =
+    (n.AVOID>=70 && n.CONFLICT>=65) ? "Withdrawal + shutdown (protects you, but blocks repair)" :
+    (n.TRUST>=70 && n.PACE>=70) ? "Suspicion + slow pacing (you need proof before softness)" :
+    (n.AUTO>=70) ? "Autonomy shield (you protect freedom first)" :
+    (n.ANX>=65) ? "Reassurance seeking (you want clarity fast)" :
+    "Calm filtering (you choose carefully).";
+
+  // pacing
+  const pacing =
+    (n.PACE>=75) ? "Slow-burn only (fast feelings = pressure)" :
+    (n.PACE>=55) ? "Steady pace (earn it, but not frozen)" :
+    (n.PACE>=40) ? "Balanced pace" :
+    "Fast-intensity friendly";
+
+  return {attach, defense, pacing};
+}
+
+function getResult(){
+  const out = document.getElementById("out");
+  const scored = computeDims();
+  if(!scored){
+    out.style.display = "block";
+    out.innerHTML = "Answer all 50 questions first 💗";
+    out.scrollIntoView({behavior:"smooth", block:"start"});
+    return;
+  }
+
+  const n = scored.norm;
+  const prof = interpretProfile(n);
+
+  // rank matches
+  const entries = Object.entries(CHAR).map(([key,val]) => ({
+    key, ...val, d: dist(n, val.target)
+  })).sort((a,b)=>a.d-b.d);
+
+  const primary = entries[0];
+  const secondary = entries[1];
+  // risky = the one that fits your defenses (high AUTO+TRUST+AVOID) even if unhealthy.
+  // Usually Minu, but we compute as: high AUTO/TRUST/AVOID similarity
+  const riskyScore = (c) =>
+    Math.abs(n.AUTO - c.target.AUTO)*0.8 +
+    Math.abs(n.TRUST - c.target.TRUST)*0.9 +
+    Math.abs(n.AVOID - c.target.AVOID)*0.7 +
+    Math.abs(n.PACE - c.target.PACE)*0.6;
+  const risky = entries.slice().sort((a,b)=>riskyScore(a)-riskyScore(b))[0];
+
+  const vibePills = [
+    pill("Attachment: " + prof.attach),
+    pill("Defense: " + prof.defense),
+    pill("Pacing: " + prof.pacing),
+    pill("Autonomy: " + level(n.AUTO)),
+    pill("Trust filter: " + level(n.TRUST)),
+    pill("Jealousy tolerance: " + invLevel(n.JEAL)),
+  ].join("");
+
+  out.style.display = "block";
+  out.innerHTML = `
+    <h2 style="margin:0 0 6px;">Your primary match: ${primary.name} ${primary.emoji}</h2>
+    <p style="margin:0 0 10px;">
+      <b>Why:</b> Your pattern points to <b>${prof.attach}</b> with a <b>${prof.pacing}</b> preference and
+      strong autonomy/trust filters. ${primary.works}
+    </p>
+
+    <div class="charCard">
+      <div class="avatar">${primary.emoji}</div>
+      <div>
+        <p class="charTitle">${primary.name}</p>
+        <p class="charSub"><b>Works because:</b> ${primary.strengths.join(", ")}.</p>
+      </div>
+    </div>
+
+    <div class="mutedBox">
+      <b>What could break it:</b> ${primary.breaks}<br/>
+      <b>How to make it work:</b> ${primary.advice}
+    </div>
+
+    <h3 style="margin:16px 0 6px;">Secondary match: ${secondary.name} ${secondary.emoji}</h3>
+    <p style="margin:0 0 10px;">
+      <b>Why:</b> This match shows up when your answers lean toward their strengths:
+      ${secondary.strengths.join(", ")}. It can feel easier in day-to-day moments.
+    </p>
+
+    <h3 style="margin:16px 0 6px;">High-chemistry risky match: ${risky.name} ${risky.emoji}</h3>
+    <p style="margin:0 0 10px;">
+      <b>Why it pulls you:</b> it matches your defensive wiring (especially autonomy + suspicion).
+      <b>Warning:</b> chemistry can become a loop if neither side does repair.
+      ${risky.key === "minu" ? "This is the “alive but unsafe” magnet if you’re guarded." : ""}
+    </p>
+
+    <div style="margin-top:10px;">${vibePills}</div>
+
+    <div class="dimGrid">
+      ${dimBox("Avoidant/withdrawal", n.AVOID, "Higher = you protect yourself by pulling away.")}
+      ${dimBox("Anxious chase", n.ANX, "Higher = you want reassurance/clarity faster.")}
+      ${dimBox("Slow pacing need", n.PACE, "Higher = you distrust fast feelings; you need time.")}
+      ${dimBox("Autonomy sensitivity", n.AUTO, "Higher = control/pressure is a major turn-off.")}
+      ${dimBox("Conflict avoidance", n.CONFLICT, "Higher = you avoid/withdraw under tension.")}
+      ${dimBox("Jealousy intolerance", n.JEAL, "Higher = boundaries matter; low tolerance for triangles.")}
+      ${dimBox("Skepticism (trust filter)", n.TRUST, "Higher = you verify before you believe.")}
+    </div>
+
+    <div class="row" style="margin-top:14px;">
+      <button type="button" onclick="copyResult('${escapeJS(primary.name)}','${escapeJS(secondary.name)}','${escapeJS(risky.name)}')">Copy / Share 💌</button>
+      <button type="button" class="ghost" onclick="tryAgain()">Try again</button>
+    </div>
+
+    <p class="tiny" style="margin-top:10px;">
+      Match distances — ${primary.name}: ${primary.d.toFixed(1)} • ${secondary.name}: ${secondary.d.toFixed(1)} • ${risky.name}: ${risky.d.toFixed(1)}
+    </p>
+  `;
+  out.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function escapeJS(s){ return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'"); }
+
+function copyResult(primary, secondary, risky){
+  const scored = computeDims();
+  if(!scored) return;
+  const n = scored.norm;
+  const prof = interpretProfile(n);
+
+  const text =
+`Operation: True Love — 50Q Precision Quiz 💗
+Primary: ${primary}
+Secondary: ${secondary}
+Risky chemistry: ${risky}
+
+Profile:
+- Attachment: ${prof.attach}
+- Defense: ${prof.defense}
+- Pacing: ${prof.pacing}
+
+Dims (0–100):
+AVOID ${n.AVOID} | ANX ${n.ANX} | PACE ${n.PACE} | AUTO ${n.AUTO} | CONFLICT ${n.CONFLICT} | JEAL ${n.JEAL} | TRUST ${n.TRUST}`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast("Copied! Paste it anywhere 💖");
+  }).catch(() => {
+    showToast("Copy blocked — screenshot works 💗");
+  });
+}
+
+function scrollToResult(){
+  const out = document.getElementById("out");
+  if(out.style.display === "none"){
+    showToast("No result yet — answer questions then tap Get my result 💗");
+    return;
+  }
+  out.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function tryAgain(){
+  document.getElementById("quiz").reset();
+  document.getElementById("out").style.display = "none";
+  document.getElementById("out").innerHTML = "";
+  document.getElementById("toast").style.display = "none";
+  updateProgress();
+  document.getElementById("top").scrollIntoView({behavior:"smooth"});
+}
+
+function resetAll(){ tryAgain(); }
+
+// helpers for building Q
+function q(t, opts){ return {t, opts}; }
+function o(t, d){ return {t, d}; }
+function pill(t){ return `<span class="pill">${t}</span>`; }
+
+function level(v){
+  if(v>=80) return "very high";
+  if(v>=60) return "high";
+  if(v>=40) return "medium";
+  if(v>=20) return "low";
+  return "very low";
+}
+function invLevel(v){
+  // for jealousy intolerance; invert to "tolerance"
+  const tol = 100 - v;
+  if(tol>=80) return "very high";
+  if(tol>=60) return "high";
+  if(tol>=40) return "medium";
+  if(tol>=20) return "low";
+  return "very low";
+}
+
+function dimBox(name, val, help){
+  return `
+    <div class="dim">
+      <b>${name}:</b> ${val}/100<br/>
+      <span class="tiny">${help}</span>
+    </div>
+  `;
+}
+
+// init
+buildQuestions();
+</script>
+</body>
+</html>
